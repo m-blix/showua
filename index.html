@@ -16,11 +16,23 @@ html, body {
 }
 
 #container {
-  padding: 10px;
 }
 
 #ua {
   font-size: 56px;
+  padding: 10px;
+}
+
+#indicator {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: blue;
+}
+
+.hidden {
+  display: none;
 }
 </style>
 </head>
@@ -28,6 +40,8 @@ html, body {
 <div id="container">
 
   <div id="ua"></div>
+
+  <div id="indicator" class="hidden"></div>
 
 </div>
 
@@ -38,6 +52,14 @@ let uaEl = document.getElementById('ua');
 
 uaEl.textContent = navigator.userAgent;
 
+if (isMobile()) {
+  let indicatorEl = document.getElementById('indicator');
+  indicatorEl.classList.remove('hidden');
+}
+
+function isMobile(userAgentString = navigator.userAgent) {
+  return userAgentString.includes('Mobile');
+}
 </script>
 </body>
 </html>
